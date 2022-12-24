@@ -1,15 +1,14 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:ionicons/ionicons.dart';
 import 'package:provider/provider.dart';
-import 'package:tasks/features/articles/presentation/components/articles/article_list_view_builder.dart';
-import 'package:tasks/features/articles/presentation/components/articles/article_shimmer_list.dart';
-import 'package:tasks/features/articles/presentation/screens/search_screen.dart';
 
 import '../../../../widgets/custom_drawer.dart';
+import '../components/articles/article_list_view_builder.dart';
+import '../components/articles/article_shimmer_list.dart';
 import '../components/articles/load_more_articles.dart';
 import '../components/articles/not_found.dart';
 import '../providers/article_provider.dart';
+import 'search_screen.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({Key? key}) : super(key: key);

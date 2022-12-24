@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:tasks/features/articles/presentation/components/articles/article_list_view_builder.dart';
-import 'package:tasks/features/articles/presentation/providers/article_provider.dart';
 
+import '../components/articles/article_list_view_builder.dart';
 import '../components/articles/not_found.dart';
+import '../providers/article_provider.dart';
 
 class SearchScreen extends StatefulWidget {
   const SearchScreen({Key? key}) : super(key: key);

@@ -1,25 +1,33 @@
 import 'package:connectivity_plus/connectivity_plus.dart';
 import 'package:get_it/get_it.dart';
-import 'package:tasks/features/articles/domain/usecase/fetch_bookmark_use_case.dart';
-import 'package:tasks/features/articles/domain/usecase/update_bookmark_use_case.dart';
 
 import '../../../core/platform/network_info.dart';
 import '../data/datasource/article_local_data_source.dart';
 import '../data/datasource/article_remote_data_source.dart';
+import '../data/datasource/auth_user_data_source.dart';
 import '../data/repository/article_repository_impl.dart';
+import '../data/repository/auth_repository_impl.dart';
 import '../domain/repository/article_repository.dart';
+import '../domain/repository/auth_repository.dart';
+import '../domain/usecase/fetch_bookmark_use_case.dart';
 import '../domain/usecase/fetch_data_use_case.dart';
 import '../domain/usecase/fetch_more_data_use_case.dart';
+import '../domain/usecase/forgot_password_use_case.dart';
+import '../domain/usecase/login_user_use_case.dart';
+import '../domain/usecase/register_user_use_case.dart';
+import '../domain/usecase/update_bookmark_use_case.dart';
 import 'providers/article_provider.dart';
+import 'providers/auth_provider.dart';
 
 final sl = GetIt.instance;
 
 Future<void> init() async {
-  //  Feature - Article
+  //  Feature
   initArticleFeature();
-  //  Feature - Core
+  initAuthFeature();
+  //Core
   initCoreInit();
-  //  Feature - External Dependencies
+  // External Dependencies
   initExternalDependency();
 }
 
@@ -29,6 +37,24 @@ void initExternalDependency() {
 
 void initCoreInit() {
   sl.registerLazySingleton<NetworkInfo>(() => NetworkInfoImpl(sl()));
+}
+
+void initAuthFeature() {
+  //Bloc
+  sl.registerFactory(() => AuthProvider(
+      forgotPasswordUseCase: sl(),
+      loginUserUseCase: sl(),
+      registerUserUseCase: sl()));
+
+  //UseCase
+  sl.registerLazySingleton(() => LoginUserUseCase(sl()));
+  sl.registerLazySingleton(() => RegisterUserUseCase(sl()));
+  sl.registerLazySingleton(() => ForgotPasswordUseCase(sl()));
+
+  //Repository
+  sl.registerLazySingleton<AuthRepository>(
+      () => AuthRepositoryImpl(dataSource: sl(), networkInfo: sl()));
+  sl.registerLazySingleton<AuthDataSource>(() => AuthDataSourceImpl());
 }
 
 void initArticleFeature() {

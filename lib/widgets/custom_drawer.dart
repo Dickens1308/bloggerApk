@@ -2,7 +2,8 @@
 
 import 'package:flutter/material.dart';
 import 'package:ionicons/ionicons.dart';
-import 'package:tasks/features/articles/presentation/screens/bookmark_screen.dart';
+
+import '../features/presentation/screens/bookmark_screen.dart';
 
 class CustomerDrawer extends StatelessWidget {
   const CustomerDrawer({Key? key}) : super(key: key);

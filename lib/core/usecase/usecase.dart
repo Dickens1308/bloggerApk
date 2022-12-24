@@ -20,3 +20,14 @@ class ArticleParam implements NoParam {
   @override
   bool? get stringify => throw UnimplementedError();
 }
+
+class AuthParam extends NoParam {
+  final String? username;
+  final String? email;
+  final String? password;
+
+  AuthParam({this.username, this.email, this.password});
+
+  @override
+  List<Object?> get props => [username, email, password];
+}

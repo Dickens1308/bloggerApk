@@ -6,7 +6,7 @@ import 'package:path/path.dart';
 import 'package:path_provider/path_provider.dart';
 import 'package:sqflite/sqflite.dart';
 
-import '../../features/articles/data/models/article_model.dart';
+import '../../features/data/models/article_model.dart';
 
 class CreateAllTables {
   static const _databaseName = 'blogs.db';

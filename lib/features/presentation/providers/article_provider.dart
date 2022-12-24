@@ -3,13 +3,13 @@ import 'dart:developer';
 
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
-import 'package:tasks/features/articles/domain/usecase/update_bookmark_use_case.dart';
 
 import '../../../../core/usecase/usecase.dart';
 import '../../domain/entity/article_entity.dart';
 import '../../domain/usecase/fetch_bookmark_use_case.dart';
 import '../../domain/usecase/fetch_data_use_case.dart';
 import '../../domain/usecase/fetch_more_data_use_case.dart';
+import '../../domain/usecase/update_bookmark_use_case.dart';
 
 class ArticleProvider extends ChangeNotifier {
   final FetchDataUseCase fetchDataUseCase;
@@ -53,6 +53,8 @@ class ArticleProvider extends ChangeNotifier {
         _articleList.where((e) => e.title != value.title).toList();
     _relatedArticleList
         .sort((a, b) => a.publishedAt!.compareTo(b.publishedAt!));
+
+    _relatedArticleList.reversed;
     notifyListeners();
 
     return _relatedArticleList;

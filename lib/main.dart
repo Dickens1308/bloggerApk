@@ -1,15 +1,18 @@
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:provider/provider.dart';
 
-import 'features/articles/presentation/injection_container.dart' as ic;
-import 'features/articles/presentation/injection_container.dart';
-import 'features/articles/presentation/providers/article_provider.dart';
-import 'features/articles/presentation/screens/home_screen.dart';
+import 'features/presentation/injection_container.dart';
+import 'features/presentation/injection_container.dart' as ic;
+import 'features/presentation/providers/article_provider.dart';
+import 'features/presentation/providers/auth_provider.dart';
+import 'features/presentation/screens/home_screen.dart';
 
 void main() async {
   Paint.enableDithering = true;
   WidgetsFlutterBinding.ensureInitialized();
+  await Firebase.initializeApp();
 
   SystemChrome.setSystemUIOverlayStyle(const SystemUiOverlayStyle(
     systemNavigationBarColor: Colors.white,
@@ -30,6 +33,13 @@ void main() async {
             fetchMoreDataUseCase: sl(),
             updateArticleBookmarkUsecase: sl(),
             fetchBookmarkUseCase: sl(),
+          ),
+        ),
+        ChangeNotifierProvider<AuthProvider>(
+          create: (_) => AuthProvider(
+            forgotPasswordUseCase: sl(),
+            loginUserUseCase: sl(),
+            registerUserUseCase: sl(),
           ),
         ),
       ],

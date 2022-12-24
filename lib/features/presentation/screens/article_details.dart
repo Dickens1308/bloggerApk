@@ -5,10 +5,10 @@ import 'package:ionicons/ionicons.dart';
 import 'package:provider/provider.dart';
 import 'package:shimmer/shimmer.dart';
 import 'package:tasks/core/constant/constant.dart';
-import 'package:tasks/features/articles/presentation/components/articles/article_list_view_builder.dart';
 
 import '../../../../core/constant/caches.dart';
 import '../../domain/entity/article_entity.dart';
+import '../components/articles/article_list_view_builder.dart';
 import '../providers/article_provider.dart';
 
 class ArticleDetails extends StatefulWidget {
@@ -116,7 +116,7 @@ class _ArticleDetailsState extends State<ArticleDetails> {
     return SliverToBoxAdapter(
       child: Scrollbar(
         child: Padding(
-          padding: const EdgeInsets.all(10),
+          padding: const EdgeInsets.all(20),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
